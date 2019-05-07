@@ -1,16 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[597]:
-
-
 import pandas as pd
 import numpy as np
 import re
 import nltk
+"""download nltk packages"""
 #nltk.download()
-
-# In[599]:
 
 
 def extract(text):
@@ -18,10 +11,6 @@ def extract(text):
     return result
 
 
-# In[600]:
-
-
-import nltk
 from nltk.stem import WordNetLemmatizer 
 from nltk.corpus import wordnet as wn
 from nltk.corpus import stopwords
@@ -37,7 +26,6 @@ def tokenize(text,lemmatized = False,no_stopword = False):
         if no_stopword:
             tmp = tokens.copy()
             for i in tmp:
-                #i = i.lower()
                 if i in stop_words:
                     try:
                         tokens.remove(i)
@@ -56,10 +44,6 @@ def tokenize(text,lemmatized = False,no_stopword = False):
             return tokens
         else:
             return tokens
-
-
-# In[601]:
-
 
 from scipy.spatial import distance
 from sklearn.preprocessing import normalize
@@ -86,9 +70,6 @@ def get_similarity(q1,q2,lemmatized = False,no_stopword = False):
     return sim_list
 
 
-# In[602]:
-
-
 def predict(sim,ground_truth,threshold=0.5):
     predict = []
     count = np.sum(np.where(ground_truth>0,1,0),axis=0)
@@ -105,10 +86,6 @@ def predict(sim,ground_truth,threshold=0.5):
     recall = count_same/count
     return predict,recall    
 
-
-# In[603]:
-
-
 def evaluate(sim,ground_truth,threshold=0.5):
     predict_this,recall = predict(sim,ground_truth,threshold=threshold)
     correct_count = 0
@@ -118,10 +95,6 @@ def evaluate(sim,ground_truth,threshold=0.5):
             correct_count+=1
     precision = correct_count/count
     return precision,recall
-
-
-# In[605]:
-
 
 if __name__ == "__main__": 
     # Test Q1
