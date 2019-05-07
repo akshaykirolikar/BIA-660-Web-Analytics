@@ -12,6 +12,7 @@ from sklearn.decomposition import LatentDirichletAllocation
 
 
 def cluster_kmean(train_file,test_file):
+    """Load train and test data into data frames"""
     f_train = open(train_file,encoding="utf-8")
     train_data = json.load(f_train)
     df_train = pd.DataFrame(train_data,columns=['text'])
@@ -27,13 +28,14 @@ def cluster_kmean(train_file,test_file):
     labels = list(set(sum(labels,[])))[:3]
     
     
-
+    """"Initialize TF-IDF vectorizer"""
     tfidf_vect = TfidfVectorizer(stop_words="english",min_df=5) 
 
     dtm = tfidf_vect.fit_transform(df_train['text'])
 
     num_clusters=3
     
+    """Initialize clutering"""
     clusterer = KMeansClusterer(num_clusters, cosine_distance,repeats=20)
     
     clusters = clusterer.cluster(dtm.toarray(),assign_clusters=True)
