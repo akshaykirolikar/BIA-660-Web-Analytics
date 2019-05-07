@@ -1,16 +1,25 @@
+<<<<<<< HEAD
 #!/usr/bin/env python
 # coding: utf-8
 
 # In[597]:
 
 
+=======
+>>>>>>> as4
 import pandas as pd
 import numpy as np
 import re
 import nltk
+<<<<<<< HEAD
 #nltk.download()
 
 # In[599]:
+=======
+"""download nltk packages"""
+#nltk.download()
+
+>>>>>>> as4
 
 
 def extract(text):
@@ -18,10 +27,13 @@ def extract(text):
     return result
 
 
+<<<<<<< HEAD
 # In[600]:
 
 
 import nltk
+=======
+>>>>>>> as4
 from nltk.stem import WordNetLemmatizer 
 from nltk.corpus import wordnet as wn
 from nltk.corpus import stopwords
@@ -37,7 +49,11 @@ def tokenize(text,lemmatized = False,no_stopword = False):
         if no_stopword:
             tmp = tokens.copy()
             for i in tmp:
+<<<<<<< HEAD
                 #i = i.lower()
+=======
+                i = i.lower()
+>>>>>>> as4
                 if i in stop_words:
                     try:
                         tokens.remove(i)
@@ -58,9 +74,12 @@ def tokenize(text,lemmatized = False,no_stopword = False):
             return tokens
 
 
+<<<<<<< HEAD
 # In[601]:
 
 
+=======
+>>>>>>> as4
 from scipy.spatial import distance
 from sklearn.preprocessing import normalize
 def get_similarity(q1,q2,lemmatized = False,no_stopword = False):
@@ -85,10 +104,13 @@ def get_similarity(q1,q2,lemmatized = False,no_stopword = False):
         sim_list.append(sim[i][i+500])
     return sim_list
 
+<<<<<<< HEAD
 
 # In[602]:
 
 
+=======
+>>>>>>> as4
 def predict(sim,ground_truth,threshold=0.5):
     predict = []
     count = np.sum(np.where(ground_truth>0,1,0),axis=0)
@@ -105,10 +127,13 @@ def predict(sim,ground_truth,threshold=0.5):
     recall = count_same/count
     return predict,recall    
 
+<<<<<<< HEAD
 
 # In[603]:
 
 
+=======
+>>>>>>> as4
 def evaluate(sim,ground_truth,threshold=0.5):
     predict_this,recall = predict(sim,ground_truth,threshold=threshold)
     correct_count = 0
@@ -120,8 +145,11 @@ def evaluate(sim,ground_truth,threshold=0.5):
     return precision,recall
 
 
+<<<<<<< HEAD
 # In[605]:
 
+=======
+>>>>>>> as4
 
 if __name__ == "__main__": 
     # Test Q1
@@ -183,3 +211,8 @@ if __name__ == "__main__":
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> as4
